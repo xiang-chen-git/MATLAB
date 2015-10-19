@@ -1,0 +1,569 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Problem 2</title><meta name="generator" content="MATLAB 8.4"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-10-10"><meta name="DC.source" content="problem2.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Problem 2</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">(a)</a></li><li><a href="#2">when n = 10</a></li><li><a href="#3">when n = 20</a></li><li><a href="#4">when n = 40</a></li><li><a href="#5">Conclusion</a></li><li><a href="#6">(b)</a></li><li><a href="#7">when n = 20</a></li><li><a href="#8">when n = 40</a></li><li><a href="#9">Conlusion</a></li></ul></div><h2>(a)<a name="1"></a></h2><p>when n = 5 define A, x, b</p><pre class="codeinput">A = zeros(5,5);
+<span class="keyword">for</span> i=1:5;
+    <span class="keyword">for</span> j=1:5;
+        A(i,j)=1/(i+j-1);
+    <span class="keyword">end</span>;
+<span class="keyword">end</span>;
+
+x = zeros(5,1);
+<span class="keyword">for</span> i=1:5;
+    x(i,1)=1/(5+1-i);
+<span class="keyword">end</span>;
+
+b = A*x;
+<span class="comment">%find solution</span>
+[L,U,p] = lu(A,<span class="string">'vector'</span>);
+xhat = U\(L\b(p));
+<span class="comment">% weighted residual for xhat</span>
+r = A*x-A*xhat;
+rho = norm(r,1) /(norm(A,1)*norm(x,1))
+<span class="comment">% estimated condition number</span>
+c = norm(A,1)*invnormest(L,U)
+<span class="comment">% actual relative error</span>
+actual_error = norm(xhat-x,1)/norm(x,1)
+</pre><pre class="codeoutput">
+rho =
+
+   3.1942e-17
+
+
+c =
+
+   9.4366e+05
+
+
+actual_error =
+
+   1.1077e-12
+
+</pre><h2>when n = 10<a name="2"></a></h2><p>define A, x, b</p><pre class="codeinput">A = zeros(10,10);
+<span class="keyword">for</span> i=1:10;
+    <span class="keyword">for</span> j=1:10;
+        A(i,j)=1/(i+j-1);
+    <span class="keyword">end</span>;
+<span class="keyword">end</span>;
+
+x = zeros(10,1);
+<span class="keyword">for</span> i=1:10;
+    x(i,1)=1/(10+1-i);
+<span class="keyword">end</span>;
+
+b = A*x;
+<span class="comment">%find solution</span>
+[L,U,p] = lu(A,<span class="string">'vector'</span>);
+xhat = U\(L\b(p));
+<span class="comment">% weighted residual for xhat</span>
+r = A*x-A*xhat;
+rho = norm(r,1) /(norm(A,1)*norm(x,1))
+<span class="comment">% estimated condition number</span>
+c = norm(A,1)*invnormest(L,U)
+<span class="comment">% actual relative error</span>
+actual_error = norm(xhat-x,1)/norm(x,1)
+</pre><pre class="codeoutput">
+rho =
+
+   9.7060e-18
+
+
+c =
+
+   3.5353e+13
+
+
+actual_error =
+
+   1.3334e-04
+
+</pre><h2>when n = 20<a name="3"></a></h2><p>define A, x, b</p><pre class="codeinput">A = zeros(20,20);
+<span class="keyword">for</span> i=1:20;
+    <span class="keyword">for</span> j=1:20;
+        <span class="keyword">if</span> (j == 20)
+          A(i,j) = 5;
+        <span class="keyword">elseif</span> (i==j) &amp;&amp; (j&lt;20)
+            A(i,j) = 1;
+        <span class="keyword">elseif</span> (i&gt;j)
+            A(i,j) = -1;
+        <span class="keyword">else</span>
+            A(i,j) = 0;
+        <span class="keyword">end</span>;
+    <span class="keyword">end</span>;
+<span class="keyword">end</span>;
+
+x = zeros(20,1);
+<span class="keyword">for</span> i=1:20;
+    x(i,1)=1/(20+1-i);
+<span class="keyword">end</span>;
+
+b = A*x;
+<span class="comment">%find solution</span>
+[L,U,p] = lu(A,<span class="string">'vector'</span>);
+xhat = U\(L\b(p));
+<span class="comment">% weighted residual for xhat</span>
+r = A*x-A*xhat;
+rho = norm(r,1) /(norm(A,1)*norm(x,1))
+<span class="comment">% estimated condition number</span>
+c = norm(A,1)*invnormest(L,U)
+<span class="comment">% actual relative error</span>
+actual_error = norm(xhat-x,1)/norm(x,1)
+</pre><pre class="codeoutput">
+rho =
+
+   8.5874e-13
+
+
+c =
+
+   99.9998
+
+
+actual_error =
+
+   2.9934e-11
+
+</pre><h2>when n = 40<a name="4"></a></h2><p>define A, x, b</p><pre class="codeinput">A = zeros(40,40);
+<span class="keyword">for</span> i=1:40;
+    <span class="keyword">for</span> j=1:40;
+        <span class="keyword">if</span> (j == 40)
+          A(i,j) = 5;
+        <span class="keyword">elseif</span> (i==j) &amp;&amp; (j&lt;40)
+            A(i,j) = 1;
+        <span class="keyword">elseif</span> (i&gt;j)
+            A(i,j) = -1;
+        <span class="keyword">else</span>
+            A(i,j) = 0;
+        <span class="keyword">end</span>;
+    <span class="keyword">end</span>;
+<span class="keyword">end</span>;
+
+x = zeros(40,1);
+<span class="keyword">for</span> i=1:40;
+    x(i,1)=1/(40+1-i);
+<span class="keyword">end</span>;
+
+b = A*x;
+<span class="comment">%find solution</span>
+[L,U,p] = lu(A,<span class="string">'vector'</span>);
+xhat = U\(L\b(p));
+<span class="comment">% weighted residual for xhat</span>
+r = A*x-A*xhat;
+rho = norm(r,1) /(norm(A,1)*norm(x,1))
+<span class="comment">% estimated condition number</span>
+c = norm(A,1)*invnormest(L,U)
+<span class="comment">% actual relative error</span>
+actual_error = norm(xhat-x,1)/norm(x,1)
+</pre><pre class="codeoutput">
+rho =
+
+   3.7943e-07
+
+
+c =
+
+  200.0000
+
+
+actual_error =
+
+   2.6993e-05
+
+</pre><h2>Conclusion<a name="5"></a></h2><p>when n = 20 40 , they are ill-conditioned when n = 5 10, they are well-conditional when n = 5 10 20 40, it is stable, stable, unstable, unstable</p><h2>(b)<a name="6"></a></h2><p>n=20,40 they are unstable</p><p>Using the follwoing method ---one step of  iteravite improvement</p><p>r=b-A*x1</p><p>delta(x) = SolveLU(r)</p><p>x2 = delta(x) + x1</p><h2>when n = 20<a name="7"></a></h2><p>define A, x, b</p><pre class="codeinput">A = zeros(20,20);
+<span class="keyword">for</span> i=1:20;
+    <span class="keyword">for</span> j=1:20;
+        <span class="keyword">if</span> (j == 20)
+          A(i,j) = 5;
+        <span class="keyword">elseif</span> (i==j) &amp;&amp; (j&lt;20)
+            A(i,j) = 1;
+        <span class="keyword">elseif</span> (i&gt;j)
+            A(i,j) = -1;
+        <span class="keyword">else</span>
+            A(i,j) = 0;
+        <span class="keyword">end</span>;
+    <span class="keyword">end</span>;
+<span class="keyword">end</span>;
+
+x = zeros(20,1);
+<span class="keyword">for</span> i=1:20;
+    x(i,1)=1/(20+1-i);
+<span class="keyword">end</span>;
+
+b = A*x;
+<span class="comment">%find solution</span>
+[L,U,p] = lu(A,<span class="string">'vector'</span>);
+xhat = U\(L\b(p));
+<span class="comment">% one step of iterative improvement</span>
+r = A*x-A*xhat;
+[L,U,p] = lu(A,<span class="string">'vector'</span>);
+deltaX = U\(L\r(p));
+xhat = xhat + deltaX;
+<span class="comment">% weighted residual for xhat</span>
+r = A*x-A*xhat;
+rho = norm(r,1) /(norm(A,1)*norm(x,1))
+<span class="comment">% estimated condition number</span>
+c = norm(A,1)*invnormest(L,U)
+<span class="comment">% actual relative error</span>
+actual_error = norm(xhat-x,1)/norm(x,1)
+</pre><pre class="codeoutput">
+rho =
+
+   2.4687e-18
+
+
+c =
+
+   99.9998
+
+
+actual_error =
+
+   5.4003e-16
+
+</pre><h2>when n = 40<a name="8"></a></h2><p>define A, x, b</p><pre class="codeinput">A = zeros(40,40);
+<span class="keyword">for</span> i=1:40;
+    <span class="keyword">for</span> j=1:40;
+        <span class="keyword">if</span> (j == 40)
+          A(i,j) = 5;
+        <span class="keyword">elseif</span> (i==j) &amp;&amp; (j&lt;40)
+            A(i,j) = 1;
+        <span class="keyword">elseif</span> (i&gt;j)
+            A(i,j) = -1;
+        <span class="keyword">else</span>
+            A(i,j) = 0;
+        <span class="keyword">end</span>;
+    <span class="keyword">end</span>;
+<span class="keyword">end</span>;
+
+x = zeros(40,1);
+<span class="keyword">for</span> i=1:40;
+    x(i,1)=1/(40+1-i);
+<span class="keyword">end</span>;
+
+b = A*x;
+<span class="comment">%find solution</span>
+[L,U,p] = lu(A,<span class="string">'vector'</span>);
+xhat = U\(L\b(p));
+<span class="comment">% one step of iterative improvement</span>
+r = A*x-A*xhat;
+[L,U,p] = lu(A,<span class="string">'vector'</span>);
+deltaX = U\(L\r(p));
+xhat = xhat + deltaX;
+<span class="comment">% weighted residual for xhat</span>
+r = A*x-A*xhat;
+rho = norm(r,1) /(norm(A,1)*norm(x,1))
+<span class="comment">% estimated condition number</span>
+
+<span class="comment">% actual relative error</span>
+actual_error = norm(xhat-x,1)/norm(x,1)
+</pre><pre class="codeoutput">
+rho =
+
+   3.6328e-18
+
+
+actual_error =
+
+   1.0006e-15
+
+</pre><h2>Conlusion<a name="9"></a></h2><p>Now they are numericall ystable</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Problem 2
+
+%% (a)
+% when n = 5 
+% define A, x, b
+A = zeros(5,5); 
+for i=1:5; 
+    for j=1:5; 
+        A(i,j)=1/(i+j-1); 
+    end; 
+end; 
+
+x = zeros(5,1);
+for i=1:5;
+    x(i,1)=1/(5+1-i);
+end;
+
+b = A*x;
+%find solution 
+[L,U,p] = lu(A,'vector');
+xhat = U\(L\b(p)); 
+% weighted residual for xhat
+r = A*x-A*xhat;
+rho = norm(r,1) /(norm(A,1)*norm(x,1))
+% estimated condition number
+c = norm(A,1)*invnormest(L,U) 
+% actual relative error
+actual_error = norm(xhat-x,1)/norm(x,1)
+
+
+
+%% when n = 10 
+% define A, x, b
+A = zeros(10,10); 
+for i=1:10; 
+    for j=1:10; 
+        A(i,j)=1/(i+j-1); 
+    end; 
+end; 
+
+x = zeros(10,1);
+for i=1:10;
+    x(i,1)=1/(10+1-i);
+end;
+
+b = A*x;
+%find solution 
+[L,U,p] = lu(A,'vector');
+xhat = U\(L\b(p)); 
+% weighted residual for xhat
+r = A*x-A*xhat;
+rho = norm(r,1) /(norm(A,1)*norm(x,1))
+% estimated condition number
+c = norm(A,1)*invnormest(L,U) 
+% actual relative error
+actual_error = norm(xhat-x,1)/norm(x,1)
+
+
+%% when n = 20 
+% define A, x, b
+A = zeros(20,20);
+for i=1:20;
+    for j=1:20;
+        if (j == 20)
+          A(i,j) = 5;
+        elseif (i==j) && (j<20)
+            A(i,j) = 1;
+        elseif (i>j)
+            A(i,j) = -1;
+        else
+            A(i,j) = 0;
+        end;
+    end;
+end; 
+
+x = zeros(20,1);
+for i=1:20;
+    x(i,1)=1/(20+1-i);
+end;
+
+b = A*x;
+%find solution 
+[L,U,p] = lu(A,'vector');
+xhat = U\(L\b(p)); 
+% weighted residual for xhat
+r = A*x-A*xhat;
+rho = norm(r,1) /(norm(A,1)*norm(x,1))
+% estimated condition number
+c = norm(A,1)*invnormest(L,U) 
+% actual relative error
+actual_error = norm(xhat-x,1)/norm(x,1)
+
+
+%% when n = 40 
+% define A, x, b
+A = zeros(40,40);
+for i=1:40;
+    for j=1:40;
+        if (j == 40)
+          A(i,j) = 5;
+        elseif (i==j) && (j<40)
+            A(i,j) = 1;
+        elseif (i>j)
+            A(i,j) = -1;
+        else
+            A(i,j) = 0;
+        end;
+    end;
+end; 
+
+x = zeros(40,1);
+for i=1:40;
+    x(i,1)=1/(40+1-i);
+end;
+
+b = A*x;
+%find solution 
+[L,U,p] = lu(A,'vector');
+xhat = U\(L\b(p)); 
+% weighted residual for xhat
+r = A*x-A*xhat;
+rho = norm(r,1) /(norm(A,1)*norm(x,1))
+% estimated condition number
+c = norm(A,1)*invnormest(L,U) 
+% actual relative error
+actual_error = norm(xhat-x,1)/norm(x,1)
+
+
+
+%% Conclusion 
+% when n = 20 40 , they are ill-conditioned 
+% when n = 5 10, they are well-conditional
+% when n = 5 10 20 40, it is stable, stable, unstable, unstable 
+
+%% (b)
+% n=20,40 they are unstable 
+%
+% Using the follwoing method REPLACE_WITH_DASH_DASH-one step of  iteravite improvement 
+%
+% r=b-A*x1
+%
+% delta(x) = SolveLU(r)
+%
+% x2 = delta(x) + x1
+
+
+%% when n = 20 
+% define A, x, b
+A = zeros(20,20);
+for i=1:20;
+    for j=1:20;
+        if (j == 20)
+          A(i,j) = 5;
+        elseif (i==j) && (j<20)
+            A(i,j) = 1;
+        elseif (i>j)
+            A(i,j) = -1;
+        else
+            A(i,j) = 0;
+        end;
+    end;
+end; 
+
+x = zeros(20,1);
+for i=1:20;
+    x(i,1)=1/(20+1-i);
+end;
+
+b = A*x;
+%find solution 
+[L,U,p] = lu(A,'vector');
+xhat = U\(L\b(p)); 
+% one step of iterative improvement 
+r = A*x-A*xhat;
+[L,U,p] = lu(A,'vector');
+deltaX = U\(L\r(p)); 
+xhat = xhat + deltaX;
+% weighted residual for xhat
+r = A*x-A*xhat;
+rho = norm(r,1) /(norm(A,1)*norm(x,1))
+% estimated condition number
+c = norm(A,1)*invnormest(L,U) 
+% actual relative error
+actual_error = norm(xhat-x,1)/norm(x,1)
+
+
+%% when n = 40 
+% define A, x, b
+A = zeros(40,40);
+for i=1:40;
+    for j=1:40;
+        if (j == 40)
+          A(i,j) = 5;
+        elseif (i==j) && (j<40)
+            A(i,j) = 1;
+        elseif (i>j)
+            A(i,j) = -1;
+        else
+            A(i,j) = 0;
+        end;
+    end;
+end; 
+
+x = zeros(40,1);
+for i=1:40;
+    x(i,1)=1/(40+1-i);
+end;
+
+b = A*x;
+%find solution
+[L,U,p] = lu(A,'vector');
+xhat = U\(L\b(p)); 
+% one step of iterative improvement 
+r = A*x-A*xhat;
+[L,U,p] = lu(A,'vector');
+deltaX = U\(L\r(p)); 
+xhat = xhat + deltaX;
+% weighted residual for xhat
+r = A*x-A*xhat;
+rho = norm(r,1) /(norm(A,1)*norm(x,1))
+% estimated condition number
+
+% actual relative error
+actual_error = norm(xhat-x,1)/norm(x,1)
+
+%% Conlusion 
+% Now they are numericall ystable
+
+
+
+
+    
+##### SOURCE END #####
+--></body></html>

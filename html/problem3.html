@@ -1,0 +1,572 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Problem3</title><meta name="generator" content="MATLAB 8.4"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-10-10"><meta name="DC.source" content="problem3.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Problem3</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Part (a)</a></li><li><a href="#2">Part(b)</a></li><li><a href="#3">N=4</a></li><li><a href="#4">N=20</a></li><li><a href="#5">N=40</a></li><li><a href="#6">Part(c)</a></li><li><a href="#7">The biggest N in my computer is 100</a></li><li><a href="#8">The biggest N on my computer is 1500</a></li></ul></div><h2>Part (a)<a name="1"></a></h2><pre class="codeinput">A = zeros(9,9);
+<span class="keyword">for</span> i=1:9;
+    <span class="keyword">for</span> j=1:9;
+        <span class="keyword">if</span> i==j
+            A(i,j) = 1;
+        <span class="keyword">elseif</span> i ==1
+            A(i,2)=-1/4;
+            A(i,4)=-1/4;
+        <span class="keyword">elseif</span> i==2
+            A(i,1)=-1/4;
+            A(i,5)=-1/4;
+            A(i,3)=-1/4;
+        <span class="keyword">elseif</span> i==3
+            A(i,2)=-1/4;
+            A(i,6)=-1/4;
+        <span class="keyword">elseif</span> i==4
+            A(i,1)=-1/4;
+            A(i,5)=-1/4;
+            A(i,7)=-1/4;
+        <span class="keyword">elseif</span> i==5
+            A(i,2)=-1/4;
+            A(i,4)=-1/4;
+            A(i,6)=-1/4;
+            A(i,8)=-1/4;
+        <span class="keyword">elseif</span> i==6
+            A(i,3)=-1/4;
+            A(i,5)=-1/4;
+            A(i,9)=-1/4;
+        <span class="keyword">elseif</span> i==7
+            A(i,4)=-1/4;
+            A(i,8)=-1/4;
+        <span class="keyword">elseif</span> i==8
+            A(i,7)=-1/4;
+            A(i,5)=-1/4;
+            A(i,9)=-1/4;
+        <span class="keyword">elseif</span> i==9
+            A(i,8)=-1/4;
+            A(i,6)=-1/4;
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+b = zeros(9,1);
+<span class="keyword">for</span> i=1:9;
+    <span class="keyword">if</span> i&lt;=3
+        b(i,1)=25;
+    <span class="keyword">else</span>
+        b(i,1)=0;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+[L,U,p] = lu(A,<span class="string">'vector'</span>);
+u = U\(L\b(p))
+</pre><pre class="codeoutput">
+u =
+
+   42.8571
+   52.6786
+   42.8571
+   18.7500
+   25.0000
+   18.7500
+    7.1429
+    9.8214
+    7.1429
+
+</pre><h2>Part(b)<a name="2"></a></h2><pre class="codeinput"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% YOU MUST CHANGE THESE VALUES!!</span>
+<span class="comment">%a_diag  = 1;</span>
+<span class="comment">%a_left  = -1/4;</span>
+<span class="comment">%a_right = -1/4;</span>
+<span class="comment">%a_down  = -1/4;</span>
+<span class="comment">%a_up    = -1/4;</span>
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</pre><h2>N=4<a name="3"></a></h2><pre class="codeinput">A = heatmat(4);
+b = zeros(9,1);
+<span class="keyword">for</span> i=1:9;
+    <span class="keyword">if</span> i&lt;=3
+        b(i,1)=25;
+    <span class="keyword">else</span>
+        b(i,1)=0;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="comment">%find solution</span>
+tic;
+[L,U,p] = lu(A,<span class="string">'vector'</span>);
+xhat = U\(L\b(p));
+<span class="comment">%time</span>
+time=toc
+<span class="comment">% estimated condition number</span>
+c = norm(A,1)*invnormest(L,U)
+<span class="comment">% temperature (.5,.5)</span>
+i=4/2; j=4/2; k=i+(j-1)*(4-1); temperature_center = xhat(k)
+<span class="comment">% temperature (.25,.25)</span>
+i=4/4; j=4/4; k=i+(j-1)*(4-1); temperature_center = xhat(k)
+<span class="comment">% plot</span>
+x=(0:4)/4; v=zeros(4+1,4+1); v(1:4+1,1)=100; v(2:4,2:4)=reshape(xhat,4-1,4-1);
+contour(x,x,v',30); axis <span class="string">equal</span>; axis([0,1,0,1]); colorbar;
+</pre><pre class="codeoutput">
+time =
+
+    0.0019
+
+
+c =
+
+    9.0000
+
+
+temperature_center =
+
+    25
+
+
+temperature_center =
+
+   42.8571
+
+</pre><img vspace="5" hspace="5" src="problem3_01.png" alt=""> <h2>N=20<a name="4"></a></h2><pre class="codeinput">A = heatmat(20);
+b = zeros(19*19,1);
+<span class="keyword">for</span> i=1:19*19;
+    <span class="keyword">if</span> i&lt;=19
+        b(i,1)=25;
+    <span class="keyword">else</span>
+        b(i,1)=0;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="comment">%find solution</span>
+tic;
+[L,U,p] = lu(A,<span class="string">'vector'</span>);
+xhat = U\(L\b(p));
+<span class="comment">%time</span>
+time=toc
+<span class="comment">% estimated condition number</span>
+c = norm(A,1)*invnormest(L,U)
+<span class="comment">% temperature (.5,.5)</span>
+i=20/2; j=20/2; k=i+(j-1)*(20-1); temperature_center = xhat(k)
+<span class="comment">% temperature (.25,.25)</span>
+i=20/4; j=20/4; k=i+(j-1)*(20-1); temperature_center = xhat(k)
+<span class="comment">% plot</span>
+x=(0:20)/20; v=zeros(20+1,20+1); v(1:20+1,1)=100; v(2:20,2:20)=reshape(xhat,20-1,20-1);
+contour(x,x,v',30); axis <span class="string">equal</span>; axis([0,1,0,1]); colorbar;
+</pre><pre class="codeoutput">
+time =
+
+    0.0053
+
+
+c =
+
+  235.2855
+
+
+temperature_center =
+
+   25.0000
+
+
+temperature_center =
+
+   43.1868
+
+</pre><img vspace="5" hspace="5" src="problem3_02.png" alt=""> <h2>N=40<a name="5"></a></h2><pre class="codeinput">A = heatmat(40);
+b = zeros(39*39,1);
+<span class="keyword">for</span> i=1:39*39;
+    <span class="keyword">if</span> i&lt;=39
+        b(i,1)=25;
+    <span class="keyword">else</span>
+        b(i,1)=0;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="comment">%find solution</span>
+tic;
+[L,U,p] = lu(A,<span class="string">'vector'</span>);
+xhat = U\(L\b(p));
+<span class="comment">%time</span>
+time=toc
+<span class="comment">% estimated condition number</span>
+c = norm(A,1)*invnormest(L,U)
+<span class="comment">% temperature (.5,.5)</span>
+i=40/2; j=40/2; k=i+(j-1)*(40-1); temperature_center = xhat(k)
+<span class="comment">% temperature (.25,.25)</span>
+i=40/4; j=40/4; k=i+(j-1)*(40-1); temperature_center = xhat(k)
+<span class="comment">% plot</span>
+x=(0:40)/40; v=zeros(40+1,40+1); v(1:40+1,1)=100; v(2:40,2:40)=reshape(xhat,40-1,40-1);
+contour(x,x,v',30); axis <span class="string">equal</span>; axis([0,1,0,1]); colorbar;
+</pre><pre class="codeoutput">
+time =
+
+    0.0738
+
+
+c =
+
+  942.5293
+
+
+temperature_center =
+
+   25.0000
+
+
+temperature_center =
+
+   43.1988
+
+</pre><img vspace="5" hspace="5" src="problem3_03.png" alt=""> <h2>Part(c)<a name="6"></a></h2><h2>The biggest N in my computer is 100<a name="7"></a></h2><p>N = 100 M= (100-1)^2</p><pre class="codeinput">A = heatmat(100);
+b = zeros(99*99,1);
+<span class="keyword">for</span> i=1:99*99;
+    <span class="keyword">if</span> i&lt;=99
+        b(i,1)=25;
+    <span class="keyword">else</span>
+        b(i,1)=0;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="comment">%find solution</span>
+tic;
+[L,U,p] = lu(A,<span class="string">'vector'</span>);
+xhat = U\(L\b(p));
+<span class="comment">%time</span>
+time=toc
+<span class="comment">% estimated condition number</span>
+c = norm(A,1)*invnormest(L,U)
+<span class="comment">% temperature (.5,.5)</span>
+i=100/2; j=100/2; k=i+(j-1)*(100-1); temperature_center = xhat(k)
+<span class="comment">% temperature (.25,.25)</span>
+i=100/4; j=100/4; k=i+(j-1)*(100-1); temperature_center = xhat(k)
+
+
+<span class="comment">%%(c)</span>
+</pre><pre class="codeoutput">
+time =
+
+   10.9721
+
+
+c =
+
+   5.8932e+03
+
+
+temperature_center =
+
+   25.0000
+
+
+temperature_center =
+
+   43.2022
+
+</pre><h2>The biggest N on my computer is 1500<a name="8"></a></h2><p>N=1500 M = (1500-1)^2</p><pre class="codeinput">A = spheatmat(1500);
+b = zeros((1500-1)*(1500-1),1);
+<span class="keyword">for</span> i=1:((1500-1)*(1500-1));
+    <span class="keyword">if</span> i&lt;=(1500)
+        b(i,1)=25;
+    <span class="keyword">else</span>
+        b(i,1)=0;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="comment">%find solution</span>
+tic;
+xhat = A\b;
+<span class="comment">%time</span>
+time=toc
+
+<span class="comment">% temperature (.5,.5)</span>
+i=1500/2; j=1500/2; k=i+(j-1)*(1500-1); temperature_center = xhat(k)
+<span class="comment">% temperature (.25,.25)</span>
+i=1500/4; j=1500/4; k=i+(j-1)*(1500-1); temperature_center = xhat(k)
+</pre><pre class="codeoutput">
+time =
+
+    7.9941
+
+
+temperature_center =
+
+   25.0001
+
+
+temperature_center =
+
+   43.2033
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Problem3
+
+%% Part (a)
+A = zeros(9,9);
+for i=1:9;
+    for j=1:9;
+        if i==j
+            A(i,j) = 1;
+        elseif i ==1
+            A(i,2)=-1/4;
+            A(i,4)=-1/4;
+        elseif i==2
+            A(i,1)=-1/4;
+            A(i,5)=-1/4;
+            A(i,3)=-1/4;
+        elseif i==3
+            A(i,2)=-1/4;
+            A(i,6)=-1/4;
+        elseif i==4
+            A(i,1)=-1/4;
+            A(i,5)=-1/4;
+            A(i,7)=-1/4;
+        elseif i==5
+            A(i,2)=-1/4;
+            A(i,4)=-1/4;
+            A(i,6)=-1/4;
+            A(i,8)=-1/4;
+        elseif i==6
+            A(i,3)=-1/4;
+            A(i,5)=-1/4;
+            A(i,9)=-1/4;
+        elseif i==7
+            A(i,4)=-1/4;
+            A(i,8)=-1/4;
+        elseif i==8
+            A(i,7)=-1/4;
+            A(i,5)=-1/4;
+            A(i,9)=-1/4;
+        elseif i==9
+            A(i,8)=-1/4;
+            A(i,6)=-1/4;
+        end
+    end
+end
+
+b = zeros(9,1);
+for i=1:9;
+    if i<=3
+        b(i,1)=25;
+    else
+        b(i,1)=0;
+    end
+end
+
+[L,U,p] = lu(A,'vector');
+u = U\(L\b(p))
+
+%% Part(b)
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% YOU MUST CHANGE THESE VALUES!!
+%a_diag  = 1;
+%a_left  = -1/4;
+%a_right = -1/4;
+%a_down  = -1/4;
+%a_up    = -1/4;
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% N=4
+
+A = heatmat(4);
+b = zeros(9,1);
+for i=1:9;
+    if i<=3
+        b(i,1)=25;
+    else
+        b(i,1)=0;
+    end
+end
+%find solution 
+tic;
+[L,U,p] = lu(A,'vector');
+xhat = U\(L\b(p)); 
+%time
+time=toc
+% estimated condition number
+c = norm(A,1)*invnormest(L,U) 
+% temperature (.5,.5)
+i=4/2; j=4/2; k=i+(j-1)*(4-1); temperature_center = xhat(k)
+% temperature (.25,.25)
+i=4/4; j=4/4; k=i+(j-1)*(4-1); temperature_center = xhat(k)
+% plot 
+x=(0:4)/4; v=zeros(4+1,4+1); v(1:4+1,1)=100; v(2:4,2:4)=reshape(xhat,4-1,4-1); 
+contour(x,x,v',30); axis equal; axis([0,1,0,1]); colorbar;
+
+
+
+
+%% N=20
+
+A = heatmat(20);
+b = zeros(19*19,1);
+for i=1:19*19;
+    if i<=19
+        b(i,1)=25;
+    else
+        b(i,1)=0;
+    end
+end
+%find solution 
+tic;
+[L,U,p] = lu(A,'vector');
+xhat = U\(L\b(p)); 
+%time
+time=toc
+% estimated condition number
+c = norm(A,1)*invnormest(L,U) 
+% temperature (.5,.5)
+i=20/2; j=20/2; k=i+(j-1)*(20-1); temperature_center = xhat(k)
+% temperature (.25,.25)
+i=20/4; j=20/4; k=i+(j-1)*(20-1); temperature_center = xhat(k)
+% plot 
+x=(0:20)/20; v=zeros(20+1,20+1); v(1:20+1,1)=100; v(2:20,2:20)=reshape(xhat,20-1,20-1); 
+contour(x,x,v',30); axis equal; axis([0,1,0,1]); colorbar;
+
+
+
+%% N=40
+
+A = heatmat(40);
+b = zeros(39*39,1);
+for i=1:39*39;
+    if i<=39
+        b(i,1)=25;
+    else
+        b(i,1)=0;
+    end
+end
+%find solution 
+tic;
+[L,U,p] = lu(A,'vector');
+xhat = U\(L\b(p)); 
+%time
+time=toc
+% estimated condition number
+c = norm(A,1)*invnormest(L,U) 
+% temperature (.5,.5)
+i=40/2; j=40/2; k=i+(j-1)*(40-1); temperature_center = xhat(k)
+% temperature (.25,.25)
+i=40/4; j=40/4; k=i+(j-1)*(40-1); temperature_center = xhat(k)
+% plot 
+x=(0:40)/40; v=zeros(40+1,40+1); v(1:40+1,1)=100; v(2:40,2:40)=reshape(xhat,40-1,40-1); 
+contour(x,x,v',30); axis equal; axis([0,1,0,1]); colorbar;
+
+
+
+%% Part(c)
+%% The biggest N in my computer is 100
+% N = 100 M= (100-1)^2
+
+A = heatmat(100);
+b = zeros(99*99,1);
+for i=1:99*99;
+    if i<=99
+        b(i,1)=25;
+    else
+        b(i,1)=0;
+    end
+end
+%find solution 
+tic;
+[L,U,p] = lu(A,'vector');
+xhat = U\(L\b(p)); 
+%time
+time=toc
+% estimated condition number
+c = norm(A,1)*invnormest(L,U) 
+% temperature (.5,.5)
+i=100/2; j=100/2; k=i+(j-1)*(100-1); temperature_center = xhat(k)
+% temperature (.25,.25)
+i=100/4; j=100/4; k=i+(j-1)*(100-1); temperature_center = xhat(k)
+
+
+%%(c)
+
+
+%% The biggest N on my computer is 1500
+% N=1500 M = (1500-1)^2 
+
+A = spheatmat(1500);
+b = zeros((1500-1)*(1500-1),1);
+for i=1:((1500-1)*(1500-1));
+    if i<=(1500)
+        b(i,1)=25;
+    else
+        b(i,1)=0;
+    end
+end
+%find solution 
+tic;
+xhat = A\b; 
+%time
+time=toc
+
+% temperature (.5,.5)
+i=1500/2; j=1500/2; k=i+(j-1)*(1500-1); temperature_center = xhat(k)
+% temperature (.25,.25)
+i=1500/4; j=1500/4; k=i+(j-1)*(1500-1); temperature_center = xhat(k)
+
+
+            
+            
+          
+            
+            
+        
+##### SOURCE END #####
+--></body></html>

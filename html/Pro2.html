@@ -1,0 +1,282 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Pro2</title><meta name="generator" content="MATLAB 8.4"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-09-16"><meta name="DC.source" content="Pro2.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput">format <span class="string">long</span> <span class="string">g</span>
+syms <span class="string">x</span> <span class="string">y</span> <span class="string">z</span> <span class="string">yh</span> <span class="string">xh</span>
+<span class="comment">%a</span>
+<span class="comment">% i  ii iii iv</span>
+f(x) = (8+x^3)^(1/3)-2;
+c1(x) = x*diff(f(x))/f(x)
+f(x) = log(1-2*x);
+c2(x) = x*diff(f(x))/f(x)
+f(x) = sin(1/x);
+c3(x) = x*diff(f(x))/f(x)
+f(x) = exp(x)+exp(-x)-2;
+c4(x) = x*diff(f(x))/f(x)
+
+<span class="comment">%b</span>
+<span class="comment">% i  ii iii iv</span>
+<span class="comment">% relative error</span>
+x = 1e-5/7;
+y = (8+x^3)^(1/3)-2;
+xh = vpa(<span class="string">'10^-5/7'</span>);
+yh = vpa((8+xh^3)^(1/3)-2);
+relerr1 = double((y-yh)/yh)
+x = 1e-5/7;
+y = log(1-2*x);
+xh = vpa(<span class="string">'10^-5/7'</span>);
+yh = vpa(log(1-2*xh));
+relerr2 = double((y-yh)/yh)
+x = 1e-5/7;
+y = sin(1/x);
+xh = vpa(<span class="string">'10^-5/7'</span>);
+yh = vpa(sin(1/xh));
+relerr3 = double((y-yh)/yh)
+x = 1e-5/7;
+y = exp(x)+exp(-x)-2;
+xh = vpa(<span class="string">'10^-5/7'</span>);
+yh = vpa(exp(xh)+exp(-xh)-2);
+relerr4 = double((y-yh)/yh)
+
+
+x = 1e-5/7;
+vpa(c1(x))
+vpa(c2(x))
+vpa(c3(x))
+vpa(c4(x))
+
+<span class="comment">%d</span>
+x = 1e-5/7;
+y = (8+x^3)^(1/3)-2;
+xh = vpa(<span class="string">'10^-5/7'</span>)
+yh = vpa(((2+xh)*(xh^2-2*xh+4))^(1/3)-2)
+relerry = double((y-yh)/yh)
+
+x = 1e-5/7;
+y = (8+x^3)^(1/3)-2;
+xh = vpa(<span class="string">'10^-5/7'</span>)
+yh = vpa((8+xh^3)^(1/3)-2)
+relerrx = double((y-yh)/yh)
+</pre><pre class="codeoutput"> 
+c1(x) =
+ 
+x^3/((x^3 + 8)^(2/3)*((x^3 + 8)^(1/3) - 2))
+ 
+ 
+c2(x) =
+ 
+(2*x)/(log(1 - 2*x)*(2*x - 1))
+ 
+ 
+c3(x) =
+ 
+-cos(1/x)/(x*sin(1/x))
+ 
+ 
+c4(x) =
+ 
+-(x*(exp(-x) - exp(x)))/(exp(-x) + exp(x) - 2)
+ 
+
+relerr1 =
+
+    -1
+
+
+relerr2 =
+
+      1.76535201640411e-11
+
+
+relerr3 =
+
+     -4.67173523526367e-18
+
+
+relerr4 =
+
+      0.000106664150564928
+
+ 
+ans =
+ 
+2.9999999999999999995236738234056
+ 
+ 
+ans =
+ 
+1.000001428574829940719224391322
+ 
+ 
+ans =
+ 
+2738053.2931430028431509484998421
+ 
+ 
+ans =
+ 
+2.0000000000003401360544217567447
+ 
+ 
+xh =
+ 
+0.0000014285714285714285714285714285714
+ 
+ 
+yh =
+ 
+0.00000000000000000024295432458697764817274377978522
+ 
+
+relerry =
+
+    -1
+
+ 
+xh =
+ 
+0.0000014285714285714285714285714285714
+ 
+ 
+yh =
+ 
+0.00000000000000000024295432458697764817274377978522
+ 
+
+relerrx =
+
+    -1
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+format long g
+syms x y z yh xh
+%a
+% i  ii iii iv
+f(x) = (8+x^3)^(1/3)-2;
+c1(x) = x*diff(f(x))/f(x)
+f(x) = log(1-2*x);
+c2(x) = x*diff(f(x))/f(x)
+f(x) = sin(1/x);
+c3(x) = x*diff(f(x))/f(x)
+f(x) = exp(x)+exp(-x)-2;
+c4(x) = x*diff(f(x))/f(x)
+
+%b
+% i  ii iii iv
+% relative error
+x = 1e-5/7;
+y = (8+x^3)^(1/3)-2;
+xh = vpa('10^-5/7');
+yh = vpa((8+xh^3)^(1/3)-2);
+relerr1 = double((y-yh)/yh)
+x = 1e-5/7;
+y = log(1-2*x);
+xh = vpa('10^-5/7');
+yh = vpa(log(1-2*xh));
+relerr2 = double((y-yh)/yh)
+x = 1e-5/7;
+y = sin(1/x);
+xh = vpa('10^-5/7');
+yh = vpa(sin(1/xh));
+relerr3 = double((y-yh)/yh)
+x = 1e-5/7;
+y = exp(x)+exp(-x)-2;
+xh = vpa('10^-5/7');
+yh = vpa(exp(xh)+exp(-xh)-2);
+relerr4 = double((y-yh)/yh)
+
+
+x = 1e-5/7;
+vpa(c1(x))
+vpa(c2(x))
+vpa(c3(x))
+vpa(c4(x))
+
+%d
+x = 1e-5/7;
+y = (8+x^3)^(1/3)-2;
+xh = vpa('10^-5/7')
+yh = vpa(((2+xh)*(xh^2-2*xh+4))^(1/3)-2)
+relerry = double((y-yh)/yh)
+
+x = 1e-5/7;
+y = (8+x^3)^(1/3)-2;
+xh = vpa('10^-5/7')
+yh = vpa((8+xh^3)^(1/3)-2)
+relerrx = double((y-yh)/yh)
+
+
+
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>
